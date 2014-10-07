@@ -39,3 +39,6 @@ alias gsha="git rev-parse HEAD"
 
 # branch completion
 complete -o default -W "\$(git branch 2>/dev/null | cut -c 3-)" git
+
+# secret sauce
+[[ -s ${HOME}/.company.local.bash ]] && source ${HOME}/.company.local.bash
