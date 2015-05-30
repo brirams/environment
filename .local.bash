@@ -40,5 +40,19 @@ alias gsha="git rev-parse HEAD"
 # branch completion
 complete -o default -W "\$(git branch 2>/dev/null | cut -c 3-)" git
 
+# tag stuff
+#alias bctags="cd ~/workspace/source/birdcage && \
+#   ctags -e -a -h [\".scala\"] -f ~/.emacs.d/tags/birdcage -R \
+#   gizmoduck \
+#   servo \
+#   finagle \
+#   gizmoduck-thrift \
+#   && cd -
+# "
+# alias rmtags="rm -rf ~/.emacs.d/tags/birdcage"
+
+## need to put this into some place nice:
+
+
 # secret sauce
 [[ -s ${HOME}/.company.local.bash ]] && source ${HOME}/.company.local.bash
