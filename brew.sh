@@ -34,6 +34,10 @@ brew install homebrew/dupes/screen
 
 brew install git
 
+brew install emacs --with-cocoa
+# remove the old, janky version
+sudo rm /usr/bin/emacs
+sudo rm -rf /usr/share/emacs
 
 # Remove outdated versions from the cellar.
 brew cleanup
