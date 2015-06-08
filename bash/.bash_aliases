@@ -1,13 +1,4 @@
-# there can be only one
-set -o emacs
-export EDITOR=emacs
-
-# the colors, duke!
-# colors: https://wiki.archlinux.org/index.php/Color_Bash_Prompt
-export PS1='\[\033[44;1m\]\h `pwd`\[\033[0m\]$(__git_ps1 " \[\033[1;32m\](%s)\[\033[0m\]")\n\$ '
-# Wanna see that working dir in the terminal title
-export PROMPT_COMMAND='echo -ne "\\033]0;${PWD/#$HOME/~}\\007"'
-
+# bramos' aliases
 alias ll='ls -ltr'
 alias l.='ls -a | egrep "^\."'
 alias back='cd $OLDPWD'
@@ -29,18 +20,7 @@ alias gf='~/bin/grepf.sh'
 alias gcor='~/bin/gcor.sh'
 alias g='git'
 alias gsha="git rev-parse HEAD"
-# git config --global alias.a add
-# git config --global alias.d diff
-# git config --global alias.s status
-# git config --global alias.c commit
-# git config --global alias.l log
-# git config --global alias.b branch
-# git config --global alias.co checkout
 
-# branch completion
-complete -o default -W "\$(git branch 2>/dev/null | cut -c 3-)" git
-
-# tag stuff
 #alias bctags="cd ~/workspace/source/birdcage && \
 #   ctags -e -a -h [\".scala\"] -f ~/.emacs.d/tags/birdcage -R \
 #   gizmoduck \
@@ -50,9 +30,3 @@ complete -o default -W "\$(git branch 2>/dev/null | cut -c 3-)" git
 #   && cd -
 # "
 # alias rmtags="rm -rf ~/.emacs.d/tags/birdcage"
-
-## need to put this into some place nice:
-
-
-# secret sauce
-[[ -s ${HOME}/.company.local.bash ]] && source ${HOME}/.company.local.bash

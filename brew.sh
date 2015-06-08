@@ -5,6 +5,8 @@
 # Ask for the administrator password upfront.
 sudo -v
 
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 # Make sure we're using the latest Homebrew.
 brew update
 
@@ -32,7 +34,15 @@ brew install bash-completion
 brew install homebrew/dupes/grep
 brew install homebrew/dupes/screen
 
+# make sure you source the relevant git script to setup your prompt
 brew install git
+# git config --global alias.a add \
+# git config --global alias.d diff \
+# git config --global alias.s status \
+# git config --global alias.c commit \
+# git config --global alias.l log \
+# git config --global alias.b branch \
+# git config --global alias.co checkout
 
 brew install emacs --with-cocoa
 # remove the old, janky version
