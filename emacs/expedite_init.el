@@ -41,15 +41,6 @@
             (package-install pkg))))
 
 ;; some functions that we need
-(defun ask-before-closing ()
-  "Ask whether or not to close, and then close if y was pressed"
-  (interactive)
-  (if (y-or-n-p (format "Are you sure you want to exit Emacs? "))
-      (if (< emacs-major-version 22)
-          (save-buffers-kill-terminal)
-        (save-buffers-kill-emacs))
-    (message "Canceled exit")))
-
 (defun match-paren (arg)
   "Go to the matching paren if on a paren; otherwise insert %."
   (interactive "p")
@@ -77,7 +68,6 @@
   "Files to ignore when searching buffers via \\[search-all-buffers]."
   :type 'editable-list)
 
-(require 'grep)
 (defun search-all-buffers (regexp prefix)
     "Searches file-visiting buffers for occurence of REGEXP.  With
 prefix > 1 (i.e., if you type C-u \\[search-all-buffers]),
@@ -91,8 +81,16 @@ searches all buffers."
        (remove-if
         (lambda (b) (some (lambda (rx) (string-match rx  (file-name-nondirectory (buffer-file-name b)))) search-all-buffers-ignored-files))
         (remove-if-not 'buffer-file-name (buffer-list))))
-
      regexp))
+
+(defun ask-before-closing ()
+  "Ask whether or not to close, and then close if y was pressed"
+  (interactive)
+  (if (y-or-n-p (format "Are you sure you want to exit Emacs? "))
+      (if (< emacs-major-version 22)
+          (save-buffers-kill-terminal)
+        (save-buffers-kill-emacs))
+    (message "Canceled exit")))
 
 ;; Display ido results vertically, rather than horizontally
 ;; (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
@@ -112,10 +110,11 @@ searches all buffers."
 (require 'grep-a-lot)
 (require 'dirtree)
 (require 'ansi-color)
+(require 'grep)
 
 ;; turn some stuff off
 (setq inhibit-splash-screen 1
-      initial-scratch-message 0
+      initial-scratch-message nil
       inhibit-startup-message 1
       linum-format "%3d "
       initial-major-mode 'org-mode
@@ -163,8 +162,16 @@ searches all buffers."
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key [f7] 'search-all-buffers)
 
-(when window-system
-  (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+(global-set-key (kbd "RET") 'newline-and-indent)
+(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
+(global-set-key (kbd "M-/") 'hippie-expand)
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-c C-k") 'compile)
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x C-c") 'ask-before-closing)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
