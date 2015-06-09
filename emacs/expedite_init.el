@@ -1,36 +1,37 @@
 (setq user-full-name "Brian Ramos")
 (setq user-mail-address "brian@expeditelabs.com")
 
+;; need this for loop
 (require 'cl)
 
 (load "package")
 (package-initialize)
 (add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (setq package-archive-enable-alist '(("melpa" deft magit)))
 
 (defvar bramos/packages '(better-defaults
-			  dirtree
-			  flx-ido
-			  grep-a-lot
-			  helm
-			  helm-ls-git
-			  magit
-			  markdown-mode
-			  org
-			  ruby-mode
-			  scala-mode2
-			  yaml-mode)
+                          dirtree
+                          flx-ido
+                          grep-a-lot
+                          helm
+                          helm-ls-git
+                          magit
+                          markdown-mode
+                          org
+                          ruby-mode
+                          scala-mode2
+                          yaml-mode)
   "Default packages")
 
 ;; install the packages1
 (defun bramos/packages-installed-p ()
   (loop for pkg in bramos/packages
-	when (not (package-installed-p pkg)) do (return nil)
-	finally (return t)))
+        when (not (package-installed-p pkg)) do (return nil)
+        finally (return t)))
 
 (unless (bramos/packages-installed-p)
   (message "%s" "Refreshing package database...")
@@ -39,6 +40,7 @@
     (when (not (package-installed-p pkg))
             (package-install pkg))))
 
+;; some functions that we need
 (defun ask-before-closing ()
   "Ask whether or not to close, and then close if y was pressed"
   (interactive)
@@ -128,11 +130,12 @@ searches all buffers."
       scroll-step 1
       scroll-conservatively 10000
       tags-table-list '("~/.emacs.d/tags")
-      interprograma-cut-function 'paste-to-osx
-      interprogram-paste-function 'copy-from-osx
       compilation-scroll-output 1
       frame-title-format "%b" ;; set title bar to current buffer name
 )
+
+(setq interprogram-cut-function 'paste-to-osx)
+(setq interprogram-paste-function 'copy-from-osx)
 
 (global-visual-line-mode 1)
 (global-font-lock-mode 1)
@@ -160,6 +163,9 @@ searches all buffers."
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key [f7] 'search-all-buffers)
 
+(when window-system
+  (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
@@ -179,5 +185,5 @@ searches all buffers."
 (load-file "~/.emacs.d/thrift-mode.el")
 (load-file "~/.emacs.d/init-scala.el")
 
-(when window-system
-  (global-set-key (kbd "C-x C-c") 'ask-before-closing))
+;; this is the old hotness
+(load-theme 'Darkula 1)
