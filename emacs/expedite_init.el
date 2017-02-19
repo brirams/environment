@@ -1,5 +1,5 @@
 (setq user-full-name "Brian Ramos")
-(setq user-mail-address "brian@expeditelabs.com")
+(setq user-mail-address "brian@clara.com")
 
 ;; need this for loop
 (require 'cl)
@@ -9,21 +9,31 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
 
 (setq package-archive-enable-alist '(("melpa" deft magit)))
 
 (defvar bramos/packages '(better-defaults
+                          coffee-mode
+                          auto-complete
                           dirtree
+                          dockerfile-mode
                           flx-ido
+                          go-mode
                           grep-a-lot
                           helm
+                          helm-gtags
                           helm-ls-git
                           magit
                           markdown-mode
+                          neotree
                           org
+                          powerline
                           ruby-mode
+                          sass-mode
                           scala-mode2
+                          slim-mode
+                          terraform-mode
                           yaml-mode)
   "Default packages")
 
@@ -118,17 +128,17 @@ searches all buffers."
       inhibit-startup-message 1
       linum-format "%3d "
       initial-major-mode 'org-mode
-      recentf-max-menu-items 25
+      recentf-max-menu-items 10
       transient-mark-mode 1
       ruby-insert-encoding-magic-comment 0
       magit-last-seen-setup-instructions "1.4.0"
       ido-use-faces 0
       ido-enable-flex-matching 1
       ido-create-new-buffer 'always
-      ido-enable-tramp-completion 0
+      ido-enable-tramp-completion nil
       scroll-step 1
       scroll-conservatively 10000
-      tags-table-list '("~/.emacs.d/tags")
+      tags-table-list '("~/.emacs.d/tags/expedite-rails" "~/.emacs.d/tags/expedite-scala")
       compilation-scroll-output 1
       frame-title-format "%b" ;; set title bar to current buffer name
 )
@@ -147,16 +157,34 @@ searches all buffers."
 (ido-everywhere 1)
 (flx-ido-mode 1)
 (grep-a-lot-setup-keys)
-(global-hl-line-mode 1)
 (electric-pair-mode 1)
 (electric-indent-mode 1)
+(auto-save-mode 0)
+(global-auto-complete-mode 1)
+
+(setq whitespace-line-column 100) ;; limit line length
+(setq whitespace-style '(face lines-tail))
+(add-hook 'prog-mode-hook 'whitespace-mode)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; I don't know why I have to set this custom variable for coffee-mode but ok
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
+ '(custom-enabled-themes (quote (sanityinc-tomorrow-night)))
+ '(custom-safe-themes
+   (quote
+    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" default))))
 
 (global-set-key (kbd "C-c p f") 'helm-browse-project)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
-(global-set-key (kbd "C-c <left>")  'windmove-left)
-(global-set-key (kbd "C-c <right>") 'windmove-right)
-(global-set-key (kbd "C-c <up>")    'windmove-up)
-(global-set-key (kbd "C-c <down>")  'windmove-down)
+(global-set-key (kbd "M-j") 'windmove-left)
+(global-set-key (kbd "M-k") 'windmove-right)
+(global-set-key (kbd "M-p") 'windmove-up)
+(global-set-key (kbd "M-n") 'windmove-down)
 (global-set-key (kbd "C-l") 'goto-line)
 (global-set-key "%" 'match-paren)
 (global-set-key (kbd "M-x") 'helm-M-x)
@@ -170,6 +198,7 @@ searches all buffers."
 (global-set-key (kbd "C-c C-k") 'compile)
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x C-c") 'ask-before-closing)
+(global-set-key (kbd "M-TAB") `auto-complete)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -178,10 +207,9 @@ searches all buffers."
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . javascript-mode))
 
 ;; highlight long lines, son!
-(add-hook 'scala-mode-hook '(lambda () (highlight-lines-matching-regexp ".\\{101\\}" 'hi-yellow)))
-(add-hook 'java-mode-hook '(lambda () (highlight-lines-matching-regexp ".\\{101\\}" 'hi-yellow)))
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 (add-hook 'java-mode-hook (lambda ()
@@ -192,5 +220,16 @@ searches all buffers."
 (load-file "~/.emacs.d/thrift-mode.el")
 (load-file "~/.emacs.d/init-scala.el")
 
-;; this is the old hotness
-(load-theme 'Darkula 1)
+;; Display ido results vertically, rather than horizontally
+(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
+(defun ido-disable-line-truncation () (set (make-local-variable 'truncate-lines) nil))
+(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
+(defun ido-define-keys () ;; C-n/p is more intuitive in vertical layout
+  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
+(add-hook 'ido-setup-hook 'ido-define-keys)
+
+(setq ruby-insert-encoding-magic-comment nil)
+(powerline-center-theme)
+
+(add-to-list 'exec-path "/Users/bramos/workspace/expedite-scala")

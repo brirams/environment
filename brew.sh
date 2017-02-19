@@ -43,11 +43,17 @@ brew install git
 # git config --global alias.l log \
 # git config --global alias.b branch \
 # git config --global alias.co checkout
+# git config --global alias.g grep
 
 brew install emacs --with-cocoa
 # remove the old, janky version
 sudo rm /usr/bin/emacs
 sudo rm -rf /usr/share/emacs
+
+brew install pgcli
+
+brew install markdown
+brew install jenv
 
 # Remove outdated versions from the cellar.
 brew cleanup

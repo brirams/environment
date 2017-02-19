@@ -1,0 +1,22 @@
+[alias]
+        a = add
+        d = diff
+        s = status
+        c = commit
+        l = log
+        b = branch
+        co = checkout
+        g = grep
+        p = pull
+[user]
+        name = Brian
+        email = brian@expeditelabs.com
+[credential]
+        helper = /usr/local/Cellar/git/2.4.3/share/git-core/contrib/credential/netrc/git-credential-netrc -f ~/.netrc.gpg get
+[merge]
+        tool = emerge
+
+[color "status"]
+       added = yellow
+       changed = blue
+       untracked = red
