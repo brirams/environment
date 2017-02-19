@@ -13,9 +13,10 @@
 
 (setq package-archive-enable-alist '(("melpa" deft magit)))
 
-(defvar bramos/packages '(better-defaults
+(defvar bramos/packages '(auto-complete
+                          better-defaults
                           coffee-mode
-                          auto-complete
+                          color-theme
                           dirtree
                           dockerfile-mode
                           flx-ido
