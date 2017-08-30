@@ -75,3 +75,5 @@ alias platc='cd ~/workspace/expedite-scala &&  (source ~/.secrets-platform.env &
 alias analyticsdb='pgcli --user bramos --host db-analytics.expeditelabs.com -d analytics'
 alias lint="cd ~/workspace/marketing-site && ./node_modules/.bin/eslint src --ignore-pattern '*.spec.js'"
 alias pushit="g push origin head"
+alias gla='git log --format="%C(yellow)%h %<|(30)%Cgreen%an%x09%Creset%s"'
+alias emacs='emacs -nw'

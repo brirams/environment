@@ -54,6 +54,7 @@ brew install pgcli
 
 brew install markdown
 brew install jenv
+brew install scala
 
 # Remove outdated versions from the cellar.
 brew cleanup

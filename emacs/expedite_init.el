@@ -17,6 +17,7 @@
                           better-defaults
                           coffee-mode
                           color-theme
+                          color-theme-sanityinc-tomorrow
                           dirtree
                           dockerfile-mode
                           flx-ido

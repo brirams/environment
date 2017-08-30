@@ -5,7 +5,7 @@ PREFIX="/usr/local/opt/coreutils/libexec/gnubin:$HOME/bin:/usr/local/bin"
 export PATH="$PREFIX:$PATH"
 
 set -o emacs
-export EDITOR=emacs
+export EDITOR='emacs -nw'
 
 # branch completion
 complete -o default -W "\$(git branch 2>/dev/null | cut -c 3-)" git
@@ -59,3 +59,5 @@ my_rails_stuff="$HOME/bin/expedite-rails"
 export PATH="/Users/bramos/workspace/dev-tools/rb-scripts:$my_scala_stuff:$my_rails_stuff:$PATH:$GOPATH/bin"
 
 source check_redis
+
+export TBNCTL_API_KEY=0c46bc2c-2ad2-442f-4c9b-6ec36d97ace3
