@@ -50,11 +50,11 @@ brew install emacs --with-cocoa
 sudo rm /usr/bin/emacs
 sudo rm -rf /usr/share/emacs
 
-brew install pgcli
-
 brew install markdown
 brew install jenv
 brew install scala
 
+brew install tree
+brew install kubernetes-cli
 # Remove outdated versions from the cellar.
 brew cleanup
