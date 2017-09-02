@@ -140,7 +140,6 @@ searches all buffers."
       ido-enable-tramp-completion nil
       scroll-step 1
       scroll-conservatively 10000
-      tags-table-list '("~/.emacs.d/tags/expedite-rails" "~/.emacs.d/tags/expedite-scala")
       compilation-scroll-output 1
       frame-title-format "%b" ;; set title bar to current buffer name
 )
@@ -233,5 +232,3 @@ searches all buffers."
 
 (setq ruby-insert-encoding-magic-comment nil)
 (powerline-center-theme)
-
-(add-to-list 'exec-path "/Users/bramos/workspace/expedite-scala")
