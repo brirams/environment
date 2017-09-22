@@ -11,28 +11,28 @@
 (require 'helm-ls-git)
 (global-set-key (kbd "C-c p f") 'helm-browse-project)
 
-(load-file "~/.emacs.d/thrift-mode.el")
+;;(load-file "~/.emacs.d/thrift-mode.el")
 
 ;; yaml
 ;; git clone https://github.com/yoshiki/yaml-mode
-(load-file "~/.emacs.d/yaml-mode/yaml-mode.el")
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+;;(load-file "~/.emacs.d/yaml-mode/yaml-mode.el")
+;;(require 'yaml-mode)
+;;(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 ;; markdown shittttt
-(load-file "~/.emacs.d/markdown/markdown-mode.el")
-(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+;;(load-file "~/.emacs.d/markdown/markdown-mode.el")
+;;(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+;;(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+;;(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; recent files
 (require 'recentf)
 (recentf-mode 1)
-(setq recentf-max-menu-items 25)
+(setq recentf-max-menu-items 10)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 ;; dirtree shit
-(add-to-list 'load-path "~/.emacs.d/dirtree")
+;;(add-to-list 'load-path "~/.emacs.d/dirtree")
 
 (load-file "~/.emacs.d/better-defaults.el")
 
