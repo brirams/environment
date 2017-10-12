@@ -1,5 +1,4 @@
 # bramos' .bashrc. This is the meat and potatoes.
-
 # Add `~/bin` to the `$PATH`
 PREFIX="/usr/local/opt/coreutils/libexec/gnubin:$HOME/bin:/usr/local/bin"
 export PATH="$PREFIX:$PATH"

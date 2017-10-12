@@ -44,4 +44,3 @@ alias egrep="egrep --color"
 
 alias emacs='emacs -nw'
 alias es="cowsay \"you don't work there anymore\""
-alias tbn="cd $TBN_HOME"
