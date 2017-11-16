@@ -21,6 +21,7 @@ brew cask install dropbox
 brew cask install backblaze
 brew cask install iterm2
 brew cask install dash
+brew cask install licecap
 
 # Install GNU core utilities (those that come with OS X are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
@@ -45,12 +46,12 @@ brew install homebrew/dupes/screen
 
 # make sure you source the relevant git script to setup your prompt
 brew install git
-# git config --global alias.a add 
+# git config --global alias.a add
 # git config --global alias.d diff
-# git config --global alias.s status 
-# git config --global alias.c commit 
-# git config --global alias.l log 
-# git config --global alias.b branch 
+# git config --global alias.s status
+# git config --global alias.c commit
+# git config --global alias.l log
+# git config --global alias.b branch
 # git config --global alias.co checkout
 # git config --global alias.g grep
 
@@ -64,6 +65,7 @@ brew install cowsay
 brew install tree
 brew install kubernetes-cli
 brew install jq
+
 # Remove outdated versions from the cellar.
 brew cleanup
 
