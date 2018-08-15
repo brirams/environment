@@ -12,3 +12,4 @@ export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
 alias tbn="cd $TBN_HOME"
+export PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"

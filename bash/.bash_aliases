@@ -47,3 +47,4 @@ alias es="cowsay \"you don't work there anymore\""
 
 # Motherfucking bazel wants this set.
 alias fubazel='export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/'
+alias envoy='cd ~/workspace/turbinelabs-envoy'
