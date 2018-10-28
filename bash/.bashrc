@@ -7,6 +7,7 @@ set -o emacs
 export ALTERNATE_EDITOR="emacs -nw"
 export EDITOR="emacsclient -nw"
 export VISUAL="emacsclient -nw"
+export GREP_OPTIONS='--color=always'
 
 # the colors, duke!
 # colors: https://wiki.archlinux.org/index.php/Color_Bash_Prompt

@@ -554,6 +554,11 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>823 647 445 103 0 0 2560 1418 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
@@ -561,13 +566,13 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>370 208 700 622 0 0 1440 900 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>1447 521 599 519 0 0 2560 1418 </string>
+	<string>1448 576 599 459 0 0 2560 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>191 788 1018 447 0 0 2560 1418 </string>
+	<string>191 827 1018 447 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1283 0 1273 1418 0 0 2560 1418 </string>
+	<string>0 399 1440 479 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>313 336 925 502 0 0 2560 1418 </string>
+	<string>99 138 910 502 0 0 1440 878 </string>
 	<key>NeverWarnAboutMeta</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_8DE11889-1BD4-4D06-A2A7-C12B8DD97667</key>
@@ -2701,11 +2706,13 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-04-24T18:55:37Z</date>
+	<date>2018-08-22T17:49:16Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
 	<false/>
+	<key>Selection Respects Soft Boundaries</key>
+	<true/>
 	<key>Show Toolbelt</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -2759,7 +2766,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.6beta5</string>
+	<string>3.2.0beta9</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
