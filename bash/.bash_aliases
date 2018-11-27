@@ -43,13 +43,4 @@ alias egrep="egrep --color"
 # grep -iv "Compiled from" > ExpediteSalesforceClient.java
 
 alias emacs='emacs -nw'
-alias es="cowsay \"you don't work there anymore\""
-
-# Motherfucking bazel wants this set.
-alias fubazel='export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/'
-alias envoy='cd ~/workspace/turbinelabs-envoy'
-
-alias check='/Users/brian/workspace/turbinelabs-envoy/tools/check_format.py fix'
-
-alias tbnlocal='tbnctl --api.host=localhost:8080 --api.key=key-present --api.ssl=false'
-alias localpsql='psql -U coredev -h localhost coredb'
+alias hackcli='hhvm -a -d hhvm.force_hh=1'

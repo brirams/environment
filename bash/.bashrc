@@ -1,7 +1,7 @@
 # bramos' .bashrc. This is the meat and potatoes.
 # Add `~/bin` to the `$PATH`
-PREFIX="/usr/local/opt/coreutils/libexec/gnubin:$HOME/bin:/usr/local/bin"
-export PATH="$PREFIX:$PATH"
+BIN_PREFIX="/usr/local/opt/coreutils/libexec/gnubin:$HOME/bin:/usr/local/bin"
+export PATH="$BIN_PREFIX:$PATH"
 
 set -o emacs
 export ALTERNATE_EDITOR="emacs -nw"
@@ -9,9 +9,12 @@ export EDITOR="emacsclient -nw"
 export VISUAL="emacsclient -nw"
 export GREP_OPTIONS='--color=always'
 
+
+emojis=(🐶 🐺 🐱 🐭 🐹 🐰 🐸 🐯 🐨 🐻 🐷 🐮 🐵 🐼 🐧 🐍 🐢 🐙 🐠 🐳 🐬 🐥 🔥 🐘 💯)
+
 # the colors, duke!
 # colors: https://wiki.archlinux.org/index.php/Color_Bash_Prompt
-export PS1='\[\033[44;1m\]`pwd`\[\033[0m\]$(__git_ps1 " \[\033[1;33m\](%s)\[\033[0m\]")\n\$ '
+export PS1='\[\033[44;1m\]`pwd`\[\033[0m\]$(__git_ps1 " \[\033[1;33m\](%s)\[\033[0m\]")\n`echo ${emojis[$RANDOM % 25]}` \$ '
 # Wanna see that working dir in the terminal title
 export PROMPT_COMMAND='echo -ne "\\033]0;${PWD/#$HOME/~}\\007"'
 
@@ -57,9 +60,21 @@ if [ -f ~/.git-prompt.sh ]; then
     source ~/.git-prompt.sh
 fi
 
+
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# vitess specific go path shit. we might need to rejigger this for multiple go projects
+export GOPATH=$HOME/src/ts-vitess
+export PATH=$PATH:$GOPATH/bin
+#export GOROOT=/usr/local/opt/go/libexec
+#export PATH=$PATH:$GOROOT/bin
